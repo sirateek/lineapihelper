@@ -1,0 +1,27 @@
+{
+  "name": "lineapihelper",
+  "version": "0.0.9",
+  "description": "LINE API Helper npm package for LINE Developer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sirateek/lineapihelper.git"
+  },
+  "keywords": [
+    "lineapihelper",
+    "lah"
+  ],
+  "author": "Siratee K.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sirateek/lineapihelper/issues"
+  },
+  "homepage": "https://github.com/sirateek/lineapihelper#readme",
+  "dependencies": {
+    "request": "^2.88.0",
+    "request-promise": "^4.2.5"
+  }
+}
