@@ -32,7 +32,7 @@ exports.LINEAPIHelper = functions.https.onRequest((req, res) => {
   })
 })
 ```
-### For more information, Please go to the [wiki](https://github.com/sirateek/lineapihelper/wiki) to see the package documentation
+### For more information, Please go to the [package reference wiki](https://github.com/sirateek/lineapihelper/wiki/Package-Reference) to see the package documentation
 
 ### Dependency Structure
 LINE API Helper use these dependencies in background to handle the command.
