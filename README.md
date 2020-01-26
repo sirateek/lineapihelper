@@ -40,4 +40,8 @@ LINE API Helper use these dependencies in background to handle the command.
 * [request-promise](https://www.npmjs.com/package/request-promise)
 * **crypto**
 
+### LINE API Reference
+* [Messaging API Reference](https://developers.line.biz/en/reference/messaging-api/)
+* [LINE Developer](https://developers.line.biz)
+
 ### Develop with ♡ by Siratee K.
