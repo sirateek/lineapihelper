@@ -1,6 +1,6 @@
 {
   "name": "lineapihelper",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "LINE API Helper npm package for LINE Developer",
   "main": "index.js",
   "scripts": {

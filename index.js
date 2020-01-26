@@ -274,5 +274,32 @@ module.exports = {
     } else {
       return eventtype;
     }
+  },
+  message: function() {
+    if (typeof req === "undefined") {
+      throw new Error(
+        "You didn't set the request in lineapihelper properly, Please use .setrequest('Request object') to set the request before using this command"
+      );
+    }
+    var messagebody = req.body.events[0].message;
+    return messagebody;
+  },
+  getcontent: function(messageId) {
+    if (channelaccessToken === "") {
+      throw new Error(
+        "You didn't set your channel access token properly, Please call .channelaccesstoken('Your channel access token') or .cat('Your channel access token') before using this command"
+      );
+    }
+    if (typeof messageId !== "string") {
+      throw new Error("messageId must be a string");
+    }
+    const LINEHeader = {
+      Authorization: "Bearer " + channelaccessToken
+    };
+    return request({
+      method: `GET`,
+      uri: `https://api.line.me/v2/bot/message/${messageId}/content`,
+      headers: LINEHeader
+    });
   }
 };
