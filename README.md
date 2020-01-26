@@ -28,7 +28,7 @@ exports.LINEAPIHelper = functions.https.onRequest((req, res) => {
     return res.status(200).send();
   }).catch((e) => {
     console.log(e)
-    return res.status(400).send();
+    return res.status(500).send();
   })
 })
 ```
