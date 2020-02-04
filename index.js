@@ -177,19 +177,6 @@ module.exports = {
     console.log(JSON.stringify(req.body));
     return true;
   },
-  replyToken: function() {
-    if (typeof req === "undefined") {
-      throw new Error(
-        "You didn't set the request in lineapihelper properly, Please use .setrequest('Request object') to set the request before using this command"
-      );
-    }
-    var replyToken = req.body.events[0].replyToken;
-    if (replyToken === "undefined") {
-      return false;
-    } else {
-      return replyToken;
-    }
-  },
   verify: function() {
     if (typeof req === "undefined") {
       throw new Error(
@@ -215,6 +202,24 @@ module.exports = {
       return true;
     } else {
       return false;
+    }
+  },
+  replyToken: function() {
+    if (typeof req === "undefined") {
+      throw new Error(
+        "You didn't set the request in lineapihelper properly, Please use .setrequest('Request object') to set the request before using this command"
+      );
+    }
+    var replyToken;
+    if (dialogflow) {
+      replyToken = req.body.originalDetectIntentRequest.payload.data.replyToken;
+    } else {
+      replyToken = req.body.events[0].replyToken;
+    }
+    if (replyToken === "undefined") {
+      return false;
+    } else {
+      return replyToken;
     }
   },
   userId: function() {
