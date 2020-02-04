@@ -32,15 +32,42 @@ exports.LINEAPIHelper = functions.https.onRequest((req, res) => {
   })
 })
 ```
+
+**UPDATE:** LINE API Helper from version 0.1.1 is support Dialogflow Request Decode to help the developer using fulfillment easier!
+
+### Example Code (Dialogflow Fulfillment)
+```
+exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, response) => {
+  const agent = new WebhookClient({ request, response });
+  const lah = require("lineapihelper");
+  lah.setrequest(request);
+  console.log('Dialogflow Request headers: ' + JSON.stringify(request.headers));
+  console.log('Dialogflow Request body: ' + JSON.stringify(request.body));
+ 
+  function userId(agent) {
+    agent.add(lah.userId());
+  }
+
+  let intentMap = new Map();
+  intentMap.set('Get userId', userId);
+  agent.handleRequest(intentMap);
+});
+
+```
+
+**For the Dialogflow user.** You can use all of the features in this dependency. By using the same commands as you use in non-dialogflow development, You can get the data from the request or send messages to the user easily. 
+
+Note: In the dialogflow-fulfillment new version, It requires you to do the reply by using `agent.add()`. If you use only `.reply()` in my dependency. It may cause you an error in cloud functions ("No responses defined for platform: 'LINE'").
+
 ### For more information, Please go to the [package reference wiki](https://github.com/sirateek/lineapihelper/wiki/Package-Reference) to see the package documentation
 
-### Dependency Structure
+## Dependency Structure
 LINE API Helper use these dependencies in background to handle the command.
 * [request](https://www.npmjs.com/package/request)
 * [request-promise](https://www.npmjs.com/package/request-promise)
 * **crypto**
 
-### LINE API Reference
+## LINE API Reference
 * [Messaging API Reference](https://developers.line.biz/en/reference/messaging-api/)
 * [LINE Developer](https://developers.line.biz)
 
