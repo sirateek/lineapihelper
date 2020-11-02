@@ -2,7 +2,7 @@
   "name": "lineapihelper",
   "version": "0.2.0",
   "description": "LINE API Helper npm package for LINE Developer",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/sirateek/lineapihelper#readme",
   "dependencies": {
-    "request": "^2.88.0",
-    "request-promise": "^4.2.5"
+    "axios": "^0.21.0"
   }
 }
