@@ -2,9 +2,10 @@
   "name": "lineapihelper",
   "version": "0.2.0",
   "description": "LINE API Helper npm package for LINE Developer",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "node ./test/index_test.js"
+    "test": "node ./test/index_test.js",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
     "axios": "^0.21.0"
   },
   "devDependencies": {
-    "jest": "^26.6.2"
+    "jest": "^26.6.2",
+    "typescript": "^4.0.5"
   }
 }
