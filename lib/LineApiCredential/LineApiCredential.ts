@@ -8,16 +8,16 @@ export class LineApiCredential {
    * for the LINE APIs authorization.
    */
   constructor(CredentialConfig: LineApiCredentialConfig) {
-    this.isStringOrUndefind(
+    this.#isStringOrUndefind(
       "ChannelAccessToken",
       CredentialConfig.ChannelAccessToken
     );
-    this.isStringOrUndefind("ChannelSecret", CredentialConfig.ChannelSecret);
+    this.#isStringOrUndefind("ChannelSecret", CredentialConfig.ChannelSecret);
     this.#ChannelAccessToken = CredentialConfig.ChannelAccessToken || null;
     this.#ChannelSecret = CredentialConfig.ChannelSecret || null;
   }
 
-  private isStringOrUndefind = (propertyName: string, value: any) => {
+  #isStringOrUndefind = (propertyName: string, value: any) => {
     if (typeof value !== "string" && typeof value !== "undefined") {
       throw new TypeError(
         "The `" +
@@ -30,6 +30,13 @@ export class LineApiCredential {
       );
     }
   };
+
+  public generate_request_header(): RequestHeader {
+    return {
+      Authorization: "Bearer " + this.#ChannelAccessToken,
+      "Content-Type": "application/json",
+    };
+  }
   /**
    * IsHasChannelAccessToken is used to check if the `ChannelAccessToken` has the value (Not null)
    */
@@ -39,6 +46,11 @@ export class LineApiCredential {
     }
     return false;
   }
+}
+
+export interface RequestHeader {
+  Authorization: string;
+  "Content-Type": string;
 }
 
 export interface LineApiCredentialConfig {
