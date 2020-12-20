@@ -12,7 +12,7 @@ class LineApiHelper {
   ) {
     if (!OverrideConfig && this.#Credential.isHasChannelAccessToken()) {
       throw new Error(
-        "Duplicate initilization has been occurred. If this is your purpuse, Please set the `OverrideConfig` property to `true`"
+        "Duplicate initilization has been occurred. If this is your intention, Please set the `OverrideConfig` property to `true`"
       );
     }
     this.#Credential = new LineApiCredential(CredentialConfig);
