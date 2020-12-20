@@ -1,3 +1,4 @@
+import { MessageApi } from "./LineApi/MessageApi";
 import {
   LineApiCredential,
   LineApiCredentialConfig,
@@ -5,6 +6,7 @@ import {
 
 class LineApiHelper {
   #Credential: LineApiCredential = new LineApiCredential({});
+  #MessageApi: MessageApi = new MessageApi(this.#Credential)
 
   public init(
     CredentialConfig: LineApiCredentialConfig,
@@ -16,6 +18,11 @@ class LineApiHelper {
       );
     }
     this.#Credential = new LineApiCredential(CredentialConfig);
+    this.#MessageApi = new MessageApi(this.#Credential)
+  }
+
+  get MessageApi() {
+    return this.#MessageApi
   }
 }
 

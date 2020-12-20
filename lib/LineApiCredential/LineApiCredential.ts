@@ -32,6 +32,9 @@ export class LineApiCredential {
   };
 
   public generate_request_header(): RequestHeader {
+    if (this.#ChannelAccessToken === null) {
+      throw new Error("There is no API Credential. (You may need to call `.init()` to init API Credential)")
+    }
     return {
       Authorization: "Bearer " + this.#ChannelAccessToken,
       "Content-Type": "application/json",
