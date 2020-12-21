@@ -1,4 +1,3 @@
-import { request } from "http";
 import { LineApiCredential, RequestHeader } from "../../LineApiCredential/LineApiCredential";
 import { LineApi, RequestMethod } from "../LineApi"
 
