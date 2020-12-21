@@ -12,7 +12,7 @@ export class LineApi {
     this.#Credential = ApiCredential;
   }
 
-  sendRequest(url: string,method: RequestMethod, header: RequestHeader | undefined, body: Object) {
+  sendRequest(url: string,method: RequestMethod, header: RequestHeader | undefined, body: Object = {}) {
     let requestHeader: Object
     try {
       requestHeader = this.#Credential.generate_request_header()

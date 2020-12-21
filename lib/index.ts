@@ -1,4 +1,4 @@
-import { MessageApi } from "./LineApi/MessageApi";
+import { MessageApi } from "./LineApi/MessageApi/MessageApi";
 import {
   LineApiCredential,
   LineApiCredentialConfig,

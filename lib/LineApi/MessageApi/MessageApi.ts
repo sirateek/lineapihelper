@@ -1,8 +1,11 @@
-import { LineApiCredential, RequestHeader } from "../LineApiCredential/LineApiCredential";
-import { LineApi, RequestMethod } from "./LineApi";
+import { LineApiCredential, RequestHeader } from "../../LineApiCredential/LineApiCredential";
+import { LineApi, RequestMethod } from "../LineApi";
+import { NarrowCastApi } from "./NarrowCastApi";
 export class MessageApi extends LineApi {
+  #NarrowCastApi = new NarrowCastApi(new LineApiCredential({}))
   constructor(ApiCredential: LineApiCredential) {
     super(ApiCredential);
+    this.#NarrowCastApi = new NarrowCastApi(ApiCredential)
   }
 
   /**
@@ -66,6 +69,10 @@ export class MessageApi extends LineApi {
         "notificationDisabled": notificationDisabled
       }
     )
+  }
+
+  get narrowcast() {
+    return this.#NarrowCastApi
   }
 
   /**
