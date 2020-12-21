@@ -5,7 +5,7 @@ export class MessageApi extends LineApi {
     super(ApiCredential);
   }
 
-  reply(replyToken: string, messages: Array<Object>, Header: RequestHeader | undefined) {
+  reply(replyToken: string, messages: Array<Object>, Header?: RequestHeader | undefined) {
     return this.sendRequest(
       this.ApiPrefix.DEFAULT_API_PREFIX + "/v2/bot/message/reply",
       RequestMethod.POST,
@@ -17,7 +17,7 @@ export class MessageApi extends LineApi {
     );
   }
 
-  push(to: string, messages: Array<Object>, Header: RequestHeader | undefined) {
+  push(to: string, messages: Array<Object>, Header?: RequestHeader | undefined) {
     return this.sendRequest(
       this.ApiPrefix.DEFAULT_API_PREFIX + "/v2/bot/message/push",
       RequestMethod.POST,
