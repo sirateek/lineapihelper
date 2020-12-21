@@ -10,7 +10,7 @@ export class MessageApi extends LineApi {
    * @param replyToken The replyToken from incomming request
    * @param messages The list of the message object. More infomation https://developers.line.biz/en/docs/messaging-api/message-types/
    * @param Header Optional. In case that you want to specified your own request header
-   * Call reply API
+   * Call Reply API
    */
   reply(replyToken: string, messages: Array<Object>, Header?: RequestHeader | undefined) {
     return this.sendRequest(
@@ -29,7 +29,7 @@ export class MessageApi extends LineApi {
    * @param to The target userId that you want to send the messages to
    * @param messages The list of the message object. More infomation https://developers.line.biz/en/docs/messaging-api/message-types/
    * @param Header Optional. In case that you want to specified your own request header
-   * Call push API
+   * Call Push API
    */
   push(to: string, messages: Array<Object>, Header?: RequestHeader | undefined) {
     return this.sendRequest(
@@ -43,6 +43,40 @@ export class MessageApi extends LineApi {
     );
   }
 
+  /**
+   * 
+   * @param to The list of the target userId that you want to send message to
+   * @param messages The list of the message object. More infomation https://developers.line.biz/en/docs/messaging-api/message-types/
+   * @param Header Optional. In case that you want to specified your own request header
+   * Call Multicast API
+   */
+  multicast(to: Array<string>, messages: Array<Object>, Header?: RequestHeader | undefined) {
+    return this.sendRequest(
+      this.ApiPrefix.DEFAULT_API_PREFIX + "/v2/bot/message/multicast",
+      RequestMethod.POST,
+      Header,
+      {
+        "to": to,
+        "messages": messages
+      }
+    )
+  }
 
+  /**
+   * 
+   * @param messages The list of the message object. More infomation https://developers.line.biz/en/docs/messaging-api/message-types/
+   * @param Header Optional. In case that you want to specified your own request header
+   * Call Broadcast API
+   */
+  broadcast(messages: Array<Object>, Header?: RequestHeader | undefined) {
+    return this.sendRequest(
+      this.ApiPrefix.DEFAULT_API_PREFIX + "/v2/bot/message/broadcast",
+      RequestMethod.POST,
+      Header,
+      {
+        "messages": messages
+      }
+    )
+  }
 }
 
