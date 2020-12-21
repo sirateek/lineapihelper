@@ -28,6 +28,6 @@ jobs:
          echo CHANNELACCESSTOKEN =${{ secrets.TESTCHANNELACCESSTOKEN }} >> .env
          echo CHANNELSECRET =${{ secrets.TESTCHANNELSECRET }} >> .env
          echo USERID =${{ secrets.TESTUSERID }} >> .env
-         echo LAHRUNTESTFROM =${{ GITHUB_REF }} >> .env
+         echo LAHRUNTESTFROM =${{ git rev-parse --short "$GITHUB_SHA" }} >> .env
     - run: npm ci
     - run: npm test
