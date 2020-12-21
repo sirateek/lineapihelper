@@ -1,5 +1,7 @@
 # lineapihelper( Messaging API )
 
+![Package Test](https://github.com/sirateek/lineapihelper/workflows/Package%20Test/badge.svg)
+
 LINE API Helper ( Messaging API ) for LINE Developer
 
 # Versioning
