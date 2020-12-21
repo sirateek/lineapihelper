@@ -2,6 +2,13 @@
 
 LINE API Helper ( Messaging API ) for LINE Developer
 
+# Versioning
+| Branch | Description          |
+|--------|----------------------|
+| master | The head of commit.  |
+| v0.1.3 | Current stable build |
+
+Note: v0.2.0 is now under development.
 ## Getting Started
 
 This Helper of LINE Messaging API will help you to develop the chatbot easier. With only one dependency, You will have tools that will help you to do the command like reply, push, multicast, broadcast, etc. or do the request decode to get the userId, event type, replyToken, etc.
