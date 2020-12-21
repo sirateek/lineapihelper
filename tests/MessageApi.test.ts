@@ -56,4 +56,20 @@ describe('MesageApiTest', function() {
       expect(broadcastResult.statusCode).to.equal(200)
       expect(JSON.stringify(broadcastResult.responseBody)).to.equal('{}')
     })
+
+    it('test-push-wh-notification', async function() {
+      const pushResult = await lah.MessageApi.push(
+        process.env.USERID || "?", 
+        [
+          {
+            type: "text",
+            text: `Test Push Without Notification From LAH 0.2.0 (${process.env.LAHRUNTESTFROM})`
+          }
+        ],
+        true
+      )
+      expect(pushResult.statusCode).to.equal(200)
+      expect(JSON.stringify(pushResult.responseBody)).to.equal('{}')
+    }); 
+
 });
