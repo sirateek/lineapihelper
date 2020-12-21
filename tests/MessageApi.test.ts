@@ -9,7 +9,7 @@ describe('MesageApiTest', function() {
       // Expect the Error no API Credential to be thrown
       expect(
         () => lah.MessageApi.reply("Test", [])
-      ).to.throw(Error, "There is no API Credential. (You may need to call `.init()` to init API Credential)")
+      ).to.throw(Error)
     }); 
 
     it('test-push', async function() {
@@ -17,14 +17,59 @@ describe('MesageApiTest', function() {
         ChannelAccessToken: process.env.CHANNELACCESSTOKEN,
         ChannelSecret: process.env.CHANNELSECRET,
       })
-      const pushResult = await lah.MessageApi.push(process.env.USERID || "?", 
-      [
-        {
-          type: "text",
-          text: `Test From LAH 0.2.0 (${process.env.LAHRUNTESTFROM})`
-        }
-      ])
+      const pushResult = await lah.MessageApi.push(
+        process.env.USERID || "?", 
+        [
+          {
+            type: "text",
+            text: `Test Push From LAH 0.2.0 (${process.env.LAHRUNTESTFROM})`
+          }
+        ]
+      )
       expect(pushResult.statusCode).to.equal(200)
       expect(JSON.stringify(pushResult.responseBody)).to.equal('{}')
     }); 
+
+    it('test-multicast', async function() {
+      const multicastResult = await lah.MessageApi.multicast(
+        [process.env.USERID || "?"],
+        [
+          {
+            type: "text",
+            text: `Test Multicast From LAH 0.2.0 (${process.env.LAHRUNTESTFROM})`
+          }
+        ]
+      )
+      expect(multicastResult.statusCode).to.equal(200)
+      expect(JSON.stringify(multicastResult.responseBody)).to.equal('{}')
+    })
+
+    it('test-broadcast', async function() {
+      const broadcastResult = await lah.MessageApi.broadcast(
+        [
+          {
+            type: "text",
+            text: `Test Broadcast From LAH 0.2.0 (${process.env.LAHRUNTESTFROM})`
+          }
+        ]
+      )
+      expect(broadcastResult.statusCode).to.equal(200)
+      expect(JSON.stringify(broadcastResult.responseBody)).to.equal('{}')
+    })
+
+    it('test-push-wh-notification', async function() {
+      const pushResult = await lah.MessageApi.push(
+        process.env.USERID || "?", 
+        [
+          {
+            type: "text",
+            text: `Test Push Without Notification From LAH 0.2.0 (${process.env.LAHRUNTESTFROM})`
+          }
+        ],
+        true
+      )
+      expect(pushResult.statusCode).to.equal(200)
+      expect(JSON.stringify(pushResult.responseBody)).to.equal('{}')
+    }); 
+
 });
