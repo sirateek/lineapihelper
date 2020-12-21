@@ -11,7 +11,7 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  Run Test:
+  Run-Test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
