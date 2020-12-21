@@ -27,5 +27,6 @@ jobs:
          touch .dev
          echo CHANNELACCESSTOKEN =${{ secrets.TESTCHANNELACCESSTOKEN }} >> .env
          echo CHANNELSECRET =${{ secrets.TESTCHANNELSECRET }} >> .env
+         echo USERID =${{ secrets.TESTUSERID }} >> .env
     - run: npm ci
     - run: npm test
