@@ -9,7 +9,7 @@ describe('MesageApiTest', function() {
       // Expect the Error no API Credential to be thrown
       expect(
         () => lah.MessageApi.reply("Test", [])
-      ).to.throw(Error, "There is no API Credential. (You may need to call `.init()` to init API Credential)")
+      ).to.throw(Error)
     }); 
 
     it('test-push', async function() {

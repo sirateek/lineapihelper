@@ -1,6 +1,6 @@
 export class LineApiCredential {
-  #ChannelAccessToken: string | null = null;
-  #ChannelSecret: string | null = null;
+  #ChannelAccessToken: string | undefined = undefined;
+  #ChannelSecret: string | undefined = undefined;
   /**
    *
    * @param CredentialConfig
@@ -13,8 +13,8 @@ export class LineApiCredential {
       CredentialConfig.ChannelAccessToken
     );
     this.#isStringOrUndefind("ChannelSecret", CredentialConfig.ChannelSecret);
-    this.#ChannelAccessToken = CredentialConfig.ChannelAccessToken || null;
-    this.#ChannelSecret = CredentialConfig.ChannelSecret || null;
+    this.#ChannelAccessToken = CredentialConfig.ChannelAccessToken;
+    this.#ChannelSecret = CredentialConfig.ChannelSecret;
   }
 
   #isStringOrUndefind = (propertyName: string, value: any) => {
@@ -32,8 +32,8 @@ export class LineApiCredential {
   };
 
   public generate_request_header(): RequestHeader {
-    if (this.#ChannelAccessToken === null) {
-      throw new Error("There is no API Credential. (You may need to call `.init()` to init API Credential)")
+    if (typeof this.#ChannelAccessToken !== "string") {
+      throw new Error(`Invalid API Credential. (You may need to call '.init()' to init API Credential or the credential is incorrectly passed) (Got: ChannelAccessToken: ${typeof this.#ChannelAccessToken})`)
     }
     return {
       Authorization: "Bearer " + this.#ChannelAccessToken,
@@ -44,7 +44,7 @@ export class LineApiCredential {
    * IsHasChannelAccessToken is used to check if the `ChannelAccessToken` has the value (Not null)
    */
   public isHasChannelAccessToken(): boolean {
-    if (this.#ChannelAccessToken !== null) {
+    if (typeof this.#ChannelAccessToken === "string") {
       return true;
     }
     return false;

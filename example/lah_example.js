@@ -1,8 +1,8 @@
-const lah = require("../dist/index");
+const lah = require("../dist/lib/index");
 
 lah.init({
-  ChannelAccessToken: "ChannelAccessToken",
-  ChannelSecret: "ChannelSecret"
+  ChannelAccessToken: undefined,
+  ChannelSecret: "Test"
 })
 
 lah.MessageApi.push("UserId", [{
