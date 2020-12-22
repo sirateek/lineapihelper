@@ -59,6 +59,22 @@ class NarrowCastAudience extends LineApi {
 
     /**
      * 
+     * @param config The configuration for calling the add user to audience API
+     * @param Header Optional. In case that you want to specified your own request header
+     * Call the add user to audience API
+     * More info https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group
+     */
+    addUserToAudience(config: addUserToAudienceConfig,Header?: RequestHeader | undefined) {
+        return this.sendRequest(
+            this.ApiPrefix.DEFAULT_API_PREFIX + "/v2/bot/audienceGroup/upload",
+            RequestMethod.PUT,
+            Header,
+            config
+        )
+    }
+    
+    /**
+     * 
      * @param config The configuration for calling the audience list get API
      * @param Header Optional. In case that you want to specified your own request header
      * Call the audience list get API
@@ -94,4 +110,10 @@ export interface createAudienceConfig {
     isIfaAudience?: boolean,
     uploadDescription: string,
     audiences: Array<string>
+}
+
+export interface addUserToAudienceConfig {
+    audienceGroupId: string,
+    uploadDescription?: string,
+    audiences: Array<Object>
 }
