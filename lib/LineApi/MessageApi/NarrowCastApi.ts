@@ -160,6 +160,23 @@ class NarrowCastAudience extends LineApi {
             Header,
         )
     }
+
+    /**
+     * 
+     * @param audienceGroupId The ID of the audienceGroup you want to get the data
+     * @param Header Optional. In case that you want to specified your own request header
+     * Call Get Audience Data API
+     * More Info https://developers.line.biz/en/reference/messaging-api/#get-audience-group
+     */
+    getAudienceData(audienceGroupId: string, Header?: RequestHeader | undefined) {
+        return this.sendRequest(
+            this.ApiPrefix.DEFAULT_API_PREFIX + `/v2/bot/audienceGroup/${audienceGroupId}`,
+            RequestMethod.GET,
+            Header,
+        )
+    }
+
+    
 }
 
 export interface getListConfig {
