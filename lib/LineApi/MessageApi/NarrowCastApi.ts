@@ -126,6 +126,40 @@ class NarrowCastAudience extends LineApi {
             Header
         )
     }
+
+    /**
+     * 
+     * @param audienceGroupId The ID of the audienceGroup you want to change name
+     * @param description New Description
+     * @param Header Optional. In case that you want to specified your own request header
+     * Call Rename an audience API
+     * More Info https://developers.line.biz/en/reference/messaging-api/#set-description-audience-group
+     */
+    renameAudience(audienceGroupId: string, description: string, Header?: RequestHeader | undefined) {
+        return this.sendRequest(
+            this.ApiPrefix.DEFAULT_API_PREFIX + `/v2/bot/audienceGroup/${audienceGroupId}/updateDescription`,
+            RequestMethod.PUT,
+            Header,
+            {
+                "description": description
+            }
+        )
+    }
+
+    /**
+     * 
+     * @param audienceGroupId The ID of the audienceGroup you want to delete
+     * @param Header Optional. In case that you want to specified your own request header
+     * Call Delete Audience API
+     * More Info https://developers.line.biz/en/reference/messaging-api/#delete-audience-group
+     */
+    deleteAudience(audienceGroupId: string, Header?: RequestHeader | undefined) {
+        return this.sendRequest(
+            this.ApiPrefix.DEFAULT_API_PREFIX + `/v2/bot/audienceGroup/${audienceGroupId}`,
+            RequestMethod.DELETE,
+            Header,
+        )
+    }
 }
 
 export interface getListConfig {
