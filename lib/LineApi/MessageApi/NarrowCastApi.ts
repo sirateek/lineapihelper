@@ -59,6 +59,22 @@ class NarrowCastAudience extends LineApi {
 
     /**
      * 
+     * @param config The configuration for calling the create audience for click-based retargeting API
+     * @param Header Optional. In case that you want to specified your own request header
+     * Call the create audience for click-based retargeting API
+     * More info https://developers.line.biz/en/reference/messaging-api/#create-click-audience-group
+     */
+    createAudienceByClickBased(config: createAudienceByCbAndImConfig,Header?: RequestHeader | undefined) {
+        return this.sendRequest(
+            this.ApiPrefix.DEFAULT_API_PREFIX + "/v2/bot/audienceGroup/click",
+            RequestMethod.POST,
+            Header,
+            config
+        )
+    }
+
+    /**
+     * 
      * @param config The configuration for calling the add user to audience API
      * @param Header Optional. In case that you want to specified your own request header
      * Call the add user to audience API
@@ -72,7 +88,7 @@ class NarrowCastAudience extends LineApi {
             config
         )
     }
-    
+
     /**
      * 
      * @param config The configuration for calling the audience list get API
@@ -110,6 +126,12 @@ export interface createAudienceConfig {
     isIfaAudience?: boolean,
     uploadDescription: string,
     audiences: Array<string>
+}
+
+export interface createAudienceByCbAndImConfig {
+    descrption: string,
+    requestId: string,
+    clickUrl?: string
 }
 
 export interface addUserToAudienceConfig {
