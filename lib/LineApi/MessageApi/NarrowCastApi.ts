@@ -75,6 +75,22 @@ class NarrowCastAudience extends LineApi {
 
     /**
      * 
+     * @param config The configuration for calling the create audience for impression-basedretargeting API
+     * @param Header Optional. In case that you want to specified your own request header
+     * Call the create audience for impression-based retargeting API
+     * More info https://developers.line.biz/en/reference/messaging-api/#create-imp-audience-group
+     */
+    createAudienceByImpressionBased(config: createAudienceByCbAndImConfig,Header?: RequestHeader | undefined) {
+        return this.sendRequest(
+            this.ApiPrefix.DEFAULT_API_PREFIX + "/v2/bot/audienceGroup/imp",
+            RequestMethod.POST,
+            Header,
+            config
+        )
+    }
+
+    /**
+     * 
      * @param config The configuration for calling the add user to audience API
      * @param Header Optional. In case that you want to specified your own request header
      * Call the add user to audience API
