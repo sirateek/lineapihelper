@@ -174,7 +174,39 @@ class NarrowCastAudience extends LineApi {
             RequestMethod.GET,
             Header
         )
-    }    
+    }
+
+    /**
+     * 
+     * @param Header Optional. In case that you want to specified your own request header
+     * Call Get Authority Level API
+     * More Info https://developers.line.biz/en/reference/messaging-api/#get-authority-level
+     */
+    getAuthorityLevel(Header?: RequestHeader | undefined) {
+        return this.sendRequest(
+            this.ApiPrefix.DEFAULT_API_PREFIX + "/v2/bot/audienceGroup/authorityLevel",
+            RequestMethod.GET,
+            Header,
+        )
+    }
+
+    /**
+     * 
+     * @param authorityLevel The authorityLevel Config (PUBLIC or PRIVATE)
+     * @param Header Optional. In case that you want to specified your own request header
+     * Call Change authority level API
+     * More info https://developers.line.biz/en/reference/messaging-api/#change-authority-level
+     */
+    changeAuthorityLevel(authorityLevel: authorityLevelConfig,Header?: RequestHeader | undefined) {
+        return this.sendRequest(
+            this.ApiPrefix.DEFAULT_API_PREFIX + "/v2/bot/audienceGroup/authorityLevel",
+            RequestMethod.PUT,
+            Header,
+            {
+                "authorityLevel": authorityLevel
+            }
+        )
+    }
 }
 
 export interface getListConfig {
@@ -203,4 +235,9 @@ export interface addUserToAudienceConfig {
     audienceGroupId: string,
     uploadDescription?: string,
     audiences: Array<Object>
+}
+
+export enum authorityLevelConfig {
+    PUBLIC = "PUBLIC",
+    PRIVATE = "PRIVATE"
 }
