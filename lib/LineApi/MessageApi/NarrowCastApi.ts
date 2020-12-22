@@ -107,28 +107,6 @@ class NarrowCastAudience extends LineApi {
 
     /**
      * 
-     * @param config The configuration for calling the audience list get API
-     * @param Header Optional. In case that you want to specified your own request header
-     * Call the audience list get API
-     * More info https://developers.line.biz/en/reference/messaging-api/#get-audience-groups
-     */
-    getList(config: getListConfig, Header?: RequestHeader | undefined) {
-        let extensionUrl: string = `/v2/bot/audienceGroup/list?`
-        for (const [key, value] of Object.entries(config)) {
-            if (typeof value !== "undefined") {
-                extensionUrl += `${key}=${value || null}&`
-            }
-        }
-
-        return this.sendRequest(
-            this.ApiPrefix.DEFAULT_API_PREFIX + extensionUrl,
-            RequestMethod.GET,
-            Header
-        )
-    }
-
-    /**
-     * 
      * @param audienceGroupId The ID of the audienceGroup you want to change name
      * @param description New Description
      * @param Header Optional. In case that you want to specified your own request header
@@ -176,7 +154,27 @@ class NarrowCastAudience extends LineApi {
         )
     }
 
-    
+    /**
+     * 
+     * @param config The configuration for calling the audience list get API
+     * @param Header Optional. In case that you want to specified your own request header
+     * Call the audience list get API
+     * More info https://developers.line.biz/en/reference/messaging-api/#get-audience-groups
+     */
+    getAudienceList(config: getListConfig, Header?: RequestHeader | undefined) {
+        let extensionUrl: string = `/v2/bot/audienceGroup/list?`
+        for (const [key, value] of Object.entries(config)) {
+            if (typeof value !== "undefined") {
+                extensionUrl += `${key}=${value || null}&`
+            }
+        }
+
+        return this.sendRequest(
+            this.ApiPrefix.DEFAULT_API_PREFIX + extensionUrl,
+            RequestMethod.GET,
+            Header
+        )
+    }    
 }
 
 export interface getListConfig {
