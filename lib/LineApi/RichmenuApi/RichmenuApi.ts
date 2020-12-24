@@ -127,4 +127,54 @@ export class RichmenuApi extends LineApi {
       header: Header,
     });
   }
+
+  /**
+   *
+   * @param userId The ID of the user that you want the link
+   * @param richmenuId The ID of the Richmenu that you want to link
+   * @param Header Optional. In case that you want to specified your own request header
+   *
+   * Call Link Richmenu To User API
+   *
+   * More Info https://developers.line.biz/en/reference/messaging-api/#link-rich-menu-to-user
+   */
+  linkRichmenuToUser(
+    userId: string,
+    richmenuId: string,
+    Header?: RequestHeader | undefined
+  ) {
+    return this.sendRequest({
+      uri:
+        this.ApiPrefix.DEFAULT_API_PREFIX +
+        `/v2/bot/user/${userId}/richmenu/${richmenuId}`,
+      method: RequestMethod.POST,
+      header: Header,
+    });
+  }
+
+  /**
+   *
+   * @param userIds The Array of userId that you want to link
+   * @param richmenuId The ID of the Richmenu that you want to link
+   * @param Header Optional. In case that you want to specified your own request header
+   *
+   * Call Link Richmenu to Multiple Users API
+   *
+   * More Info https://developers.line.biz/en/reference/messaging-api/#link-rich-menu-to-users
+   */
+  linkRichmenuToMultipleUsers(
+    userIds: Array<string>,
+    richmenuId: string,
+    Header?: RequestHeader | undefined
+  ) {
+    return this.sendRequest({
+      uri: this.ApiPrefix.DEFAULT_API_PREFIX + "/v2/bot/richmenu/bulk/link",
+      method: RequestMethod.POST,
+      header: Header,
+      body: {
+        richMenuId: richmenuId,
+        userIds: userIds,
+      },
+    });
+  }
 }
