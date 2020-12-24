@@ -1,4 +1,5 @@
 import { MessageApi } from "./LineApi/MessageApi/MessageApi";
+import { RichmenuApi } from "./LineApi/RichmenuApi/RichmenuApi";
 import {
   LineApiCredential,
   LineApiCredentialConfig,
@@ -7,6 +8,7 @@ import {
 class LineApiHelper {
   #Credential: LineApiCredential = new LineApiCredential({});
   #MessageApi: MessageApi = new MessageApi(this.#Credential);
+  #RichmenuApi: RichmenuApi = new RichmenuApi(this.#Credential);
 
   public init(
     CredentialConfig: LineApiCredentialConfig,
@@ -24,10 +26,21 @@ class LineApiHelper {
       throw e;
     }
     this.#MessageApi = new MessageApi(this.#Credential);
+    this.#RichmenuApi = new RichmenuApi(this.#Credential);
   }
 
+  /**
+   * Message Sending API
+   */
   get MessageApi() {
     return this.#MessageApi;
+  }
+
+  /**
+   * Richmenu management API
+   */
+  get RichmenuApi() {
+    return this.#RichmenuApi;
   }
 }
 

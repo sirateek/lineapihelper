@@ -89,6 +89,9 @@ export class MessageApi extends LineApi {
     });
   }
 
+  /**
+   * Call Narrowcast API
+   */
   get narrowcast() {
     return this.#NarrowCastApi;
   }
