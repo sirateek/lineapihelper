@@ -1,4 +1,7 @@
-import { LineApiCredential, RequestHeader } from "../LineApiCredential/LineApiCredential";
+import {
+  LineApiCredential,
+  RequestHeader,
+} from "../LineApiCredential/LineApiCredential";
 import axios, { AxiosResponse } from "axios";
 
 export class LineApi {
@@ -12,56 +15,66 @@ export class LineApi {
     this.#Credential = ApiCredential;
   }
 
-  sendRequest(url: string,method: RequestMethod, header: RequestHeader | undefined, body: Object = {}) {
-    let requestHeader: Object
+  sendRequest(config: sendRequestConfig) {
+    let requestHeader: Object;
     try {
-      requestHeader = this.#Credential.generate_request_header()
-    }  catch(e) {
-      if (typeof header === "undefined") {
-        throw e
+      requestHeader = this.#Credential.generate_request_header();
+    } catch (e) {
+      if (typeof config.header === "undefined") {
+        throw e;
       }
     }
     return new Promise<ApiResponse>(async (resolve, reject) => {
-      try{
+      try {
         const requestResult = await axios({
-          url: "https://" + url,
-          method: method,
-          headers: header || requestHeader,
-          data: JSON.stringify(body),
+          url: "https://" + config.uri,
+          method: config.method,
+          headers: config.header || requestHeader,
+          data: JSON.stringify(config.body || {}),
         });
-        resolve(new ApiResponse(requestResult.status, requestResult.data, requestResult))
-      } catch(e) {
-        reject(new ApiResponse(e.response.status, e.response.data, e.response))
+        resolve(
+          new ApiResponse(
+            requestResult.status,
+            requestResult.data,
+            requestResult
+          )
+        );
+      } catch (e) {
+        reject(new ApiResponse(e.response.status, e.response.data, e.response));
       }
-    })
+    });
   }
 
   get ApiPrefix() {
-    return this.#ApiPrefix
+    return this.#ApiPrefix;
   }
 }
 
 export class ApiResponse {
-  #statusCode: number | undefined
-  #responseBody: Object | undefined
-  #rawResponse: AxiosResponse | undefined
+  #statusCode: number | undefined;
+  #responseBody: Object | undefined;
+  #rawResponse: AxiosResponse | undefined;
 
-  constructor(statusCode: number, responseBody: Object, rawResponse: AxiosResponse) {
-    this.#statusCode = statusCode
-    this.#responseBody = responseBody
-    this.#rawResponse = rawResponse
+  constructor(
+    statusCode: number,
+    responseBody: Object,
+    rawResponse: AxiosResponse
+  ) {
+    this.#statusCode = statusCode;
+    this.#responseBody = responseBody;
+    this.#rawResponse = rawResponse;
   }
 
   get statusCode() {
-    return this.#statusCode
+    return this.#statusCode;
   }
 
   get responseBody() {
-    return this.#responseBody
+    return this.#responseBody;
   }
 
   get rawResponse() {
-    return this.#rawResponse
+    return this.#rawResponse;
   }
 }
 
@@ -70,6 +83,13 @@ export enum RequestMethod {
   GET = "GET",
   PUT = "PUT",
   DELETE = "DELETE",
+}
+
+export interface sendRequestConfig {
+  uri: string;
+  method: RequestMethod;
+  header?: RequestHeader;
+  body?: Object;
 }
 
 interface ApiPrefixUrl {

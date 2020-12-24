@@ -6,7 +6,7 @@ import {
 
 class LineApiHelper {
   #Credential: LineApiCredential = new LineApiCredential({});
-  #MessageApi: MessageApi = new MessageApi(this.#Credential)
+  #MessageApi: MessageApi = new MessageApi(this.#Credential);
 
   public init(
     CredentialConfig: LineApiCredentialConfig,
@@ -17,17 +17,17 @@ class LineApiHelper {
         "Duplicate initilization has been occurred. If this is your intention, Please set the `OverrideConfig` property to `true`"
       );
     }
-    try{
+    try {
       this.#Credential = new LineApiCredential(CredentialConfig);
-    } catch(e) {
-      console.log("Error1")
-      throw e
+    } catch (e) {
+      console.log("Error1");
+      throw e;
     }
-    this.#MessageApi = new MessageApi(this.#Credential)
+    this.#MessageApi = new MessageApi(this.#Credential);
   }
 
   get MessageApi() {
-    return this.#MessageApi
+    return this.#MessageApi;
   }
 }
 

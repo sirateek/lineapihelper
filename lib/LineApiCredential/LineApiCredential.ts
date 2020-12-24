@@ -12,10 +12,15 @@ export class LineApiCredential {
     this.#ChannelSecret = CredentialConfig.ChannelSecret;
   }
 
-
-  public generate_request_header(contentType: string = "application/json"): RequestHeader {
+  public generate_request_header(
+    contentType: string = "application/json"
+  ): RequestHeader {
     if (typeof this.#ChannelAccessToken !== "string") {
-      throw new Error(`Invalid API Credential. (You may need to call '.init()' to init API Credential or the credential is incorrectly passed) (Got: ChannelAccessToken: ${this.#ChannelAccessToken}[${typeof this.#ChannelAccessToken}])`)
+      throw new Error(
+        `Invalid API Credential. (You may need to call '.init()' to init API Credential or the credential is incorrectly passed) (Got: ChannelAccessToken: ${
+          this.#ChannelAccessToken
+        }[${typeof this.#ChannelAccessToken}])`
+      );
     }
     return {
       Authorization: "Bearer " + this.#ChannelAccessToken,
