@@ -177,4 +177,63 @@ export class RichmenuApi extends LineApi {
       },
     });
   }
+
+  /**
+   *
+   * @param userIds The ID of the user that you want to get richmenu
+   * @param Header Optional. In case that you want to specified your own request header
+   *
+   * Call Get Richmenu ID from user API
+   *
+   * More Info https://developers.line.biz/en/reference/messaging-api/#get-rich-menu-id-of-user
+   */
+  getRichmenuIdOfUser(userId: string, Header?: RequestHeader | undefined) {
+    return this.sendRequest({
+      uri:
+        this.ApiPrefix.DEFAULT_API_PREFIX + `/v2/bot/user/${userId}/richmenu`,
+      method: RequestMethod.GET,
+      header: Header,
+    });
+  }
+
+  /**
+   *
+   * @param userIds The ID of the user that you want to unlink richmenu
+   * @param Header Optional. In case that you want to specified your own request header
+   *
+   * Call Unlink Richmenu from user API
+   *
+   * More Info https://developers.line.biz/en/reference/messaging-api/#unlink-rich-menu-from-user
+   */
+  unlinkRichmenuFromUser(userId: string, Header?: RequestHeader | undefined) {
+    return this.sendRequest({
+      uri:
+        this.ApiPrefix.DEFAULT_API_PREFIX + `/v2/bot/user/${userId}/richmenu`,
+      method: RequestMethod.DELETE,
+      header: Header,
+    });
+  }
+
+  /**
+   *
+   * @param userIds The ID of the user that you want to unlink richmenu
+   * @param Header Optional. In case that you want to specified your own request header
+   *
+   * Call Unlink Richmenus from Multiple users API
+   *
+   * More Info https://developers.line.biz/en/reference/messaging-api/#unlink-rich-menu-from-users
+   */
+  unlinkRichmenusFromMultipleUsers(
+    userIds: Array<string>,
+    Header?: RequestHeader | undefined
+  ) {
+    return this.sendRequest({
+      uri: this.ApiPrefix.DEFAULT_API_PREFIX + "/v2/bot/richmenu/bulk/unlink",
+      method: RequestMethod.POST,
+      header: Header,
+      body: {
+        userIds: userIds,
+      },
+    });
+  }
 }
